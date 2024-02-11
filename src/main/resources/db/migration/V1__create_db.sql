@@ -11,7 +11,7 @@ CREATE TABLE planets (
 CREATE TABLE tickets (
     id SERIAL PRIMARY KEY,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
-    client_id SERIAL NOT NULL,
+    client_id INT NOT NULL,
     from_planet_id VARCHAR(50) NOT NULL,
     to_planet_id VARCHAR(50) NOT NULL,
     CHECK (from_planet_id <> to_planet_id),
