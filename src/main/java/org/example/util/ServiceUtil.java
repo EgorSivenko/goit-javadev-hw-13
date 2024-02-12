@@ -1,7 +1,9 @@
 package org.example.util;
 
 import lombok.experimental.UtilityClass;
+import org.apache.commons.lang3.ObjectUtils;
 import org.example.entity.Planet;
+import org.example.entity.Ticket;
 
 @UtilityClass
 public class ServiceUtil {
@@ -18,5 +20,13 @@ public class ServiceUtil {
 
     public static boolean isPlanetValid(Planet planet) {
         return isIdValid(planet.getId()) && isNameValid(planet.getName());
+    }
+
+    public static boolean isTicketValid(Ticket ticket) {
+        return ObjectUtils.allNotNull(
+                ticket.getClient(),
+                ticket.getFromPlanet(),
+                ticket.getToPlanet()
+        ) && ticket.getFromPlanet() != ticket.getToPlanet();
     }
 }
