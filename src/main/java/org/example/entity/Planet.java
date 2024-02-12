@@ -1,10 +1,11 @@
 package org.example.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,4 +18,12 @@ public class Planet {
 
     @Column(length = 500, nullable = false, unique = true)
     private String name;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "fromPlanet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Ticket> ticketsFrom = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "toPlanet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Ticket> ticketsTo = new HashSet<>();
 }
