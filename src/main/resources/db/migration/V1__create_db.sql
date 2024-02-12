@@ -15,7 +15,7 @@ CREATE TABLE tickets (
     from_planet_id VARCHAR(50) NOT NULL,
     to_planet_id VARCHAR(50) NOT NULL,
     CHECK (from_planet_id <> to_planet_id),
-    FOREIGN KEY(client_id) REFERENCES clients(id),
-    FOREIGN KEY(from_planet_id) REFERENCES planets(id),
-    FOREIGN KEY(to_planet_id) REFERENCES planets(id)
+    FOREIGN KEY(client_id) REFERENCES clients(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(from_planet_id) REFERENCES planets(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(to_planet_id) REFERENCES planets(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
